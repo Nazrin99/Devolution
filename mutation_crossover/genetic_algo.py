@@ -4,6 +4,8 @@ from functools import partial
 
 from functions import generate_random_candidate, evaluate_fitness, RETAIN_RATIO, mutate_candidate
 
+random.seed(1234)
+
 
 def genetic_algorithm(fitness_function, population_size, target_password, mutation_rate, crossover_function):
     population = [generate_random_candidate(target_password) for _ in range(population_size)]

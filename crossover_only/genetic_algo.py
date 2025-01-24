@@ -3,6 +3,8 @@ import time
 from functools import partial
 import random
 
+random.seed(1234)
+
 def genetic_algorithm(fitness_function, population_size, target_password, crossover_function):
     population = [generate_random_candidate(target_password) for _ in range(population_size)]
     generation = 0

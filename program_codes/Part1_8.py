@@ -2,7 +2,7 @@ from mutation_crossover.genetic_algo import genetic_algorithm
 from functions import monkey_problem_fitness_function, one_point_crossover
 from program_codes import TARGET_PASSWORD
 
-POPULATION_SIZE = 150
+POPULATION_SIZE = 100
 MUTATION_RATE = 0.1
 
 if __name__ == '__main__':
