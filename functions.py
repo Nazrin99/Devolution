@@ -4,7 +4,9 @@ import time
 from concurrent.futures import ThreadPoolExecutor
 from functools import partial
 
-random.seed(1234)
+from program_codes import RANDOM_SEED
+
+random.seed(RANDOM_SEED)
 
 GENE_POOL = string.ascii_letters + string.digits + string.punctuation
 RETAIN_RATIO = 0.5

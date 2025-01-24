@@ -3,7 +3,9 @@ import time
 from functools import partial
 import random
 
-random.seed(1234)
+from program_codes import RANDOM_SEED
+
+random.seed(RANDOM_SEED)
 
 def genetic_algorithm(fitness_function, population_size, target_password, mutation_rate):
     population = [generate_random_candidate(target_password) for _ in range(population_size)]

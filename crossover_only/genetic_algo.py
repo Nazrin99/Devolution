@@ -2,8 +2,9 @@ from functions import generate_random_candidate, evaluate_fitness, RETAIN_RATIO
 import time
 from functools import partial
 import random
+from program_codes import RANDOM_SEED
 
-random.seed(1234)
+random.seed(RANDOM_SEED)
 
 def genetic_algorithm(fitness_function, population_size, target_password, crossover_function):
     population = [generate_random_candidate(target_password) for _ in range(population_size)]
