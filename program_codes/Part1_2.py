@@ -3,7 +3,7 @@ from functions import monkey_problem_fitness_function
 from program_codes import TARGET_PASSWORD
 
 POPULATION_SIZE = 100
-MUTATION_RATE = 0.1
+MUTATION_RATE = 0.3
 
 # MUTATION ONLY
 

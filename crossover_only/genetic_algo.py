@@ -1,51 +1,9 @@
-import random
-import string
+from functions import generate_random_candidate, evaluate_fitness, RETAIN_RATIO
 import time
-from concurrent.futures import ThreadPoolExecutor
 from functools import partial
+import random
 
-GENE_POOL = string.ascii_letters + string.digits + string.punctuation
-RETAIN_RATIO = 0.5
-
-def monkey_problem_fitness_function(candidate, target_password):
-    return sum(c == t for c, t in zip(candidate, target_password))
-
-def generate_random_candidate(target_password):
-    return ''.join(random.choices(GENE_POOL, k=len(target_password)))
-
-def mutate_candidate(candidate, mutation_rate):
-    candidate = list(candidate)
-    for i in range(len(candidate)):
-        if random.random() < mutation_rate:
-            candidate[i] = random.choice(GENE_POOL)
-    return ''.join(candidate)
-
-def one_point_crossover(parent1, parent2):
-    split = random.randint(0, len(parent1) - 1)
-    return parent1[:split] + parent2[split:]
-
-
-def two_point_crossover(parent1, parent2):
-    # Ensure the parents are of equal length
-    if len(parent1) != len(parent2):
-        raise ValueError("Parents must have the same length")
-
-    # Select two random crossover points
-    crossover_point1 = random.randint(1, len(parent1) - 2)
-    crossover_point2 = random.randint(crossover_point1 + 1, len(parent1) - 1)
-
-    # Create the first offspring by swapping the segments between the crossover points
-    offspring1 = parent1[:crossover_point1] + parent2[crossover_point1:crossover_point2] + parent1[crossover_point2:]
-
-    # Return only the first offspring
-    return offspring1
-
-def evaluate_fitness(population, fitness_function):
-    with ThreadPoolExecutor() as executor:
-        fitness_scores = list(executor.map(fitness_function, population))
-    return fitness_scores
-
-def genetic_algorithm(fitness_function, population_size, target_password, mutation_rate):
+def genetic_algorithm(fitness_function, population_size, target_password, crossover_function):
     population = [generate_random_candidate(target_password) for _ in range(population_size)]
     generation = 0
     consecutive_wrong_attempts = 0
@@ -84,14 +42,13 @@ def genetic_algorithm(fitness_function, population_size, target_password, mutati
         # Retain 50% of the population (top candidates)
         retained_population = sorted_population[:int(population_size * RETAIN_RATIO)]
 
-        # Generate the remaining population using crossover and mutation
+        # Generate the remaining population using crossover only (no mutation)
         next_generation = retained_population[:]  # Start with the retained population
 
-        # Fill the rest of the population using crossover and mutation
+        # Fill the rest of the population using crossover only
         while len(next_generation) < population_size:
             parent1, parent2 = random.sample(retained_population, 2)  # Select parents from retained population
-            child = one_point_crossover(parent1, parent2)
-            child = mutate_candidate(child, mutation_rate)
+            child = crossover_function(parent1, parent2)  # Only use crossover to create a child
             next_generation.append(child)
 
         population = next_generation
