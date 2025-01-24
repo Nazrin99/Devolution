@@ -1,8 +1,8 @@
-from functions import generate_random_candidate, evaluate_fitness, mutate_candidate, RETAIN_RATIO
+import random
 import time
 from functools import partial
-import random
 
+from functions import generate_random_candidate, evaluate_fitness, mutate_candidate, RETAIN_RATIO
 from program_codes import RANDOM_SEED
 
 random.seed(RANDOM_SEED)
@@ -40,6 +40,7 @@ def genetic_algorithm(fitness_function, population_size, target_password, mutati
             print(f"Simulating 5-second lockout due to 5 consecutive wrong attempts...\n")
             lockout_start_time = time.time()
             total_lockout_time += 5  # Add 5 seconds for lockout time
+            time.sleep(5)  # Simulate the lockout by pausing for 5 seconds
             consecutive_wrong_attempts = 0  # Reset the counter after lockout
 
         # Create next generation
