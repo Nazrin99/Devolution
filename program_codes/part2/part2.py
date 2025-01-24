@@ -7,7 +7,7 @@ target = "G7$pQz!9sW@tL4"
 
 # Parameters
 mutation_rate = 0.1
-generations = 1000
+generations = 3000
 max_attempts = 5
 lockout_time = 5 
 
