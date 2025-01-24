@@ -2,7 +2,7 @@ import random
 import time
 from functools import partial
 
-from functions import generate_random_candidate, evaluate_fitness, mutate_candidate, RETAIN_RATIO
+from program_codes.part1.util.functions import generate_random_candidate, evaluate_fitness, mutate_candidate, RETAIN_RATIO
 from program_codes import RANDOM_SEED
 
 random.seed(RANDOM_SEED)

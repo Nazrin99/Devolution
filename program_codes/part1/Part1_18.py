@@ -1,5 +1,5 @@
 from mutation_only.genetic_algo import genetic_algorithm
-from functions import penalized_monkey_problem_fitness_function
+from program_codes.part1.util.functions import penalized_monkey_problem_fitness_function
 from program_codes import TARGET_PASSWORD
 
 POPULATION_SIZE = 100

@@ -1,6 +1,6 @@
 from crossover_only.genetic_algo import genetic_algorithm
-from functions import monkey_problem_fitness_function
-from functions import two_point_crossover
+from program_codes.part1.util.functions import monkey_problem_fitness_function
+from program_codes.part1.util.functions import two_point_crossover
 from program_codes import TARGET_PASSWORD
 
 POPULATION_SIZE = 100

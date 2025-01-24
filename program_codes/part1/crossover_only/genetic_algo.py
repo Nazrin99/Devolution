@@ -1,4 +1,4 @@
-from functions import generate_random_candidate, evaluate_fitness, RETAIN_RATIO
+from program_codes.part1.util.functions import generate_random_candidate, evaluate_fitness, RETAIN_RATIO
 import time
 from functools import partial
 import random
